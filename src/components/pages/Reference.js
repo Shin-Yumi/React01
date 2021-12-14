@@ -18,7 +18,7 @@ class Reference extends React.Component {
     }
     
     clickHandler = (id) => {
-        this.setState({ activeId: id });
+        this.setState({ activeId: id});
     };
 
     render(){
