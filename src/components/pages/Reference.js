@@ -10,8 +10,8 @@ import ReferInfo from "../info/ReferInfo";
 class Reference extends React.Component {
     state = {
         isLoading : true,
-        htmlRefer : []
-        //cssRefer : []
+        htmlRefer : [],
+        CssRefer : []
     }
 
     getRefer = async () => {
@@ -19,8 +19,14 @@ class Reference extends React.Component {
             data: {
                 data: {htmlRefer}, //{cssRefer}
             },
-        } = await axios.get("https://webstoryboy.github.io/react5001/src/assets/json/refer.json");
-        this.setState({ htmlRefer, isLoading : false })
+        } = await axios.get("https://shin-yumi.github.io/React01/src/assets/json/ReferHtml.json");
+        const {
+            data: {
+                data: {CssRefer}, //{cssRefer}
+            },
+        } = await axios.get("https://shin-yumi.github.io/React01/src/assets/json/ReferCss.json");
+        this.setState({ htmlRefer, CssRefer, isLoading : false })
+        
         //console.log(htmlRefer)
     }
 
@@ -29,7 +35,8 @@ class Reference extends React.Component {
     }
 
     render(){
-        const { isLoading, htmlRefer } = this.state;
+        const { isLoading, htmlRefer,CssRefer } = this.state;
+        
 
         return (
             <div>
@@ -54,6 +61,16 @@ class Reference extends React.Component {
                                                         desc2={html.desc2}
                                                         element={html.element}
                                                         link={html.link}
+                                                    />
+                                                ))}
+                                                {CssRefer.map((css) =>(
+                                                    <ReferInfo 
+                                                        key={css.id}
+                                                        id={css.id}
+                                                        title={css.title}
+                                                        desc2={css.desc2}
+                                                        element={css.element}
+                                                        link={css.link}
                                                     />
                                                 ))}
                                             </ul>
